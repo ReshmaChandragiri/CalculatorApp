@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded',function(){
     var display = document.getElementById('cal-display');
     var buttons = document.getElementsByClassName('btn');
-   let currentValue="";
-   let value1=display.value;
-           
+   let currentValue='';
+   
+    //%,CE are pending    
     for(let button of buttons){
         button.addEventListener('click',function(){
             
@@ -22,28 +22,21 @@ document.addEventListener('DOMContentLoaded',function(){
         else if(value=='2√x'){
             squareRootX(display.value);
         }
-        else if(value=='÷'){
-          button.addEventListener('click',function(){
-          currentValue=currentValue+value1+value+display.value;})
-          if(value=='='){
-            divide(currentValue);
-          }
+        else if(value=='⌫'){
+            backSpace(display.value);
         }
-
+        // else if(value=='+/-'){
+        //     negate(display.value);
+        // }
+        else if(value=='='){
+            equal(display.value);
+        }
+        
         else{
             currentValue=currentValue+value;
             display.value=currentValue;
             }
-       
-       // elseif(value=='÷'){
-    //     else if(value){
-    //     button.addEventListener('click',function(){
-    //         currentValue=currentValue+value1+value+display.value;
-    //     })
-    //       divide(currentValue);
         
-    // }
-           
         //Functions
         function oneByX(val){
             
@@ -58,26 +51,57 @@ document.addEventListener('DOMContentLoaded',function(){
             let result=Math.sqrt(val);
             display.value=result.toString();
         }
-        function divide(expression){
-            let res=expression.split('÷');
-            let result=parseInt(res[0]) / parseInt(res[1]);
-            display.value=result.toString();
-            
+       
+        function backSpace(val) {
+            if (display.value.length > 1) {
+              display.value = display.value.substring(0, display.value.length - 1);
+            } else {
+              currentValue = "";
+              display.value = 0;
+            }
         }
-        
-
-
-    
+        // function negate(val){
+        //     let result=-Math.abs(val);
+        //     display.value=result;
+        // }
+          
+        function equal(val){
+          let operand1='';
+          let operand2='';
+            if(val.includes('+')){
+              operand1=Number(val.substring(0,val.indexOf('+')));
+              operand2=Number(val.substring(val.indexOf('+')+1,val.length));
+              currentValue=operand1+operand2;
+              display.value=currentValue;
+            }
+            else if(val.includes('-')){
+                operand1=Number(val.substring(0,val.indexOf('-')));
+                operand2=Number(val.substring(val.indexOf('-')+1,val.length));
+                currentValue=operand1-operand2;
+                display.value=currentValue;
+              }
+              else if(val.includes('x')){
+                operand1=Number(val.substring(0,val.indexOf('x')));
+                operand2=Number(val.substring(val.indexOf('x')+1,val.length));
+                currentValue=operand1*operand2;
+                display.value=currentValue;
+              }
+              else if(val.includes('÷')){
+                operand1=Number(val.substring(0,val.indexOf('÷')));
+                operand2=Number(val.substring(val.indexOf('÷')+1,val.length));
+                currentValue=operand1/operand2;
+                display.value=currentValue;
+              }
+              else{
+                display.value=currentValue;
+            }
+        }
+       
+          
+            
     });
     }
-    
-
-
-    
-
-
-
-});
+    });
 
 
     
