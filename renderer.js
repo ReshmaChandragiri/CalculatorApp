@@ -68,33 +68,54 @@ document.addEventListener('DOMContentLoaded',function(){
         function equal(val){
           let operand1='';
           let operand2='';
-            if(val.includes('+')){
-              operand1=Number(val.substring(0,val.indexOf('+')));
-              operand2=Number(val.substring(val.indexOf('+')+1,val.length));
-              currentValue=operand1+operand2;
-              display.value=currentValue;
-            }
-            else if(val.includes('-')){
-                operand1=Number(val.substring(0,val.indexOf('-')));
-                operand2=Number(val.substring(val.indexOf('-')+1,val.length));
-                currentValue=operand1-operand2;
+            
+              //Percentage Functionality
+              // A + B % =, the result should be A × (1 + B/100) or A + (A × B/100) after you distribute the multiplication over the addition. Similarly, when the user enters A − B % =, the result should be A × (1 − B/100) or A − (A × B/100).
+             if(val.includes('%')){
+              
+                var op=val.substring(0,val.indexOf('%'));
+                var A,B;
+                if(op.includes('+')){
+                  A=Number(val.substring(0,op.indexOf('+')));
+                  B=Number(val.substring(op.indexOf('+')+1,op.length));
+                  currentValue=A + (A * B/100);
+                  display.value=currentValue;
+                  }
+                else if(op.includes('-')){
+                    A=Number(val.substring(0,op.indexOf('-')));
+                    B=Number(val.substring(op.indexOf('-')+1,op.length));
+                    currentValue=A - (A * B/100);
+                    display.value=currentValue;
+                  }
+               
+              }
+              else if(val.includes('+')){
+                operand1=Number(val.substring(0,val.indexOf('+')));
+                operand2=Number(val.substring(val.indexOf('+')+1,val.length));
+                currentValue=operand1+operand2;
                 display.value=currentValue;
               }
+              else if(val.includes('-')){
+                  operand1=Number(val.substring(0,val.indexOf('-')));
+                  operand2=Number(val.substring(val.indexOf('-')+1,val.length));
+                  currentValue=operand1-operand2;
+                  display.value=currentValue;
+                }
               else if(val.includes('x')){
-                operand1=Number(val.substring(0,val.indexOf('x')));
-                operand2=Number(val.substring(val.indexOf('x')+1,val.length));
-                currentValue=operand1*operand2;
-                display.value=currentValue;
-              }
+                  operand1=Number(val.substring(0,val.indexOf('x')));
+                  operand2=Number(val.substring(val.indexOf('x')+1,val.length));
+                  currentValue=operand1*operand2;
+                  display.value=currentValue;
+                }
               else if(val.includes('÷')){
-                operand1=Number(val.substring(0,val.indexOf('÷')));
-                operand2=Number(val.substring(val.indexOf('÷')+1,val.length));
-                currentValue=operand1/operand2;
-                display.value=currentValue;
-              }
+                  operand1=Number(val.substring(0,val.indexOf('÷')));
+                  operand2=Number(val.substring(val.indexOf('÷')+1,val.length));
+                  currentValue=operand1/operand2;
+                  display.value=currentValue;
+                }
               else{
                 display.value=currentValue;
-            }
+              }
         }
        
           
