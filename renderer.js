@@ -58,11 +58,7 @@ document.addEventListener('DOMContentLoaded',function(){
         function backSpace(val) {
             if (display.value.length > 1) {
               display.value = display.value.substring(0, display.value.length - 1);
-<<<<<<< HEAD
               
-=======
-              currentValue=display.value;
->>>>>>> 075ff70d42067349843518764cb704bfa5afe3f9
             } else {
               currentValue = "";
               display.value = 0;
@@ -131,9 +127,8 @@ document.addEventListener('DOMContentLoaded',function(){
           for(let i of operators){
             if(val.includes(i)){
              str=val.substring(0,val.indexOf(i)+1);
-             
+            }
           }
-        }
           if(str!=''){
             display.value=str;
           }
