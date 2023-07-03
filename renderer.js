@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded',function(){
         function backSpace(val) {
             if (display.value.length > 1) {
               display.value = display.value.substring(0, display.value.length - 1);
-              
+               currentValue=display.value;
             } else {
               currentValue = "";
               display.value = 0;
