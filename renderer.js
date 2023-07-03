@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded',function(){
     var buttons = document.getElementsByClassName('btn');
    let currentValue='';
    
-    //%,CE are pending    
+       
     for(let button of buttons){
         button.addEventListener('click',function(){
             
@@ -31,6 +31,9 @@ document.addEventListener('DOMContentLoaded',function(){
         else if(value=='='){
             equal(display.value);
         }
+        else if(value=='CE'){
+          ceFunctionality(display.value);
+        }
         
         else{
             currentValue=currentValue+value;
@@ -55,6 +58,7 @@ document.addEventListener('DOMContentLoaded',function(){
         function backSpace(val) {
             if (display.value.length > 1) {
               display.value = display.value.substring(0, display.value.length - 1);
+              
             } else {
               currentValue = "";
               display.value = 0;
@@ -117,7 +121,23 @@ document.addEventListener('DOMContentLoaded',function(){
                 display.value=currentValue;
               }
         }
-       
+        function ceFunctionality(val){
+          let operators=['+','-','x','÷'];
+          let str='';
+          for(let i of operators){
+            if(val.includes(i)){
+             str=val.substring(0,val.indexOf(i)+1);
+             
+          }
+        }
+          if(str!=''){
+            display.value=str;
+          }
+          else{
+            currentValue='';
+            display.value=currentValue;
+          }
+        }
           
             
     });
