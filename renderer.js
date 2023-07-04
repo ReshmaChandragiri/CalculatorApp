@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else if (value == "2√x") {
         squareRootX(display.value);
       } else if (value == "⌫") {
-        backSpace(display.value);
+        backSpace();
       }else if (value == "=") {
         equal(display.value);
       }else if(value=='-'){
@@ -34,10 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
         display.value=currentValue;
       }else if (value == "CE"){
         ceFunctionality(display.value);
-      } 
-      // else if(value=='+/-'){
-      //     negate(display.value);
-      // }
+      } else if(value=='+/-'){
+        negate(display.value);
+      }
       else {
         currentValue = currentValue + value;
         display.value = currentValue;
@@ -59,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
         currentValue= result.toString();
         display.value=currentValue;
       }
-      function backSpace(val) {
+      function backSpace() {
         if (display.value.length > 1) {
           display.value = display.value.substring(0, display.value.length - 1);
           currentValue = display.value;
@@ -118,6 +117,226 @@ document.addEventListener("DOMContentLoaded", function () {
           display.value = currentValue;
         }
       }
+      function subtraction(val){
+        let operand1='';
+        let operand2='';
+        //Percentage Functionality
+        // A + B % =, the result should be A × (1 + B/100) or A + (A × B/100) after you distribute the multiplication over the addition. Similarly, when the user enters A − B % =, the result should be A × (1 − B/100) or A − (A × B/100).
+        if(val.includes('%')){
+          var op=val.substring(0,val.indexOf('%'));
+          var A,B;
+          if(op.includes('+')){
+            A=Number(val.substring(0,op.indexOf('+')));
+            B=Number(val.substring(op.indexOf('+')+1,op.length));
+            currentValue=A + (A * B/100);
+            display.value=currentValue+'-';
+          }else if(op.includes('-')){
+            A=Number(val.substring(0,op.indexOf('-')));
+            B=Number(val.substring(op.indexOf('-')+1,op.length));
+            currentValue=A - (A * B/100);
+            display.value=currentValue+'-';
+          }
+        }
+        else if(val.includes('+')){
+          operand1=Number(val.substring(0,val.indexOf('+')));
+          operand2=Number(val.substring(val.indexOf('+')+1,val.length));
+          currentValue=operand1+operand2;
+          display.value=currentValue+'-';
+        }else if(val.includes('-')){
+          operand1=Number(val.substring(0,val.indexOf('-')));
+          operand2=Number(val.substring(val.indexOf('-')+1,val.length));
+          currentValue=operand1-operand2;
+          display.value=currentValue+'-';
+        }else if(val.includes('×')){
+          operand1=Number(val.substring(0,val.indexOf('×')));
+          operand2=Number(val.substring(val.indexOf('×')+1,val.length));
+          currentValue=operand1*operand2;
+          display.value=currentValue+'-';
+        }else if(val.includes('÷')){
+          operand1=Number(val.substring(0,val.indexOf('÷')));
+          operand2=Number(val.substring(val.indexOf('÷')+1,val.length));
+          currentValue=operand1/operand2;
+          display.value=currentValue+'-';
+        }else{
+          display.value=currentValue+'-';
+        }
+      }
+      function division(val){
+        let operand1='';
+        let operand2='';
+        //Percentage Functionality
+        // A + B % =, the result should be A × (1 + B/100) or A + (A × B/100) after you distribute the multiplication over the addition. Similarly, when the user enters A − B % =, the result should be A × (1 − B/100) or A − (A × B/100).
+        if(val.includes('%')){
+          var op=val.substring(0,val.indexOf('%'));
+          var A,B;
+          if(op.includes('+')){
+            A=Number(val.substring(0,op.indexOf('+')));
+            B=Number(val.substring(op.indexOf('+')+1,op.length));
+            currentValue=A + (A * B/100);
+            display.value=currentValue+'÷';
+          }else if(op.includes('-')){
+            A=Number(val.substring(0,op.indexOf('-')));
+            B=Number(val.substring(op.indexOf('-')+1,op.length));
+            currentValue=A - (A * B/100);
+            display.value=currentValue+'÷';
+          }
+        }
+        else if(val.includes('+')){
+          operand1=Number(val.substring(0,val.indexOf('+')));
+          operand2=Number(val.substring(val.indexOf('+')+1,val.length));
+          currentValue=operand1+operand2;
+          display.value=currentValue+'÷';
+        }else if(val.includes('-')){
+          operand1=Number(val.substring(0,val.indexOf('-')));
+          operand2=Number(val.substring(val.indexOf('-')+1,val.length));
+          currentValue=operand1-operand2;
+          display.value=currentValue+'÷';
+        }else if(val.includes('×')){
+          operand1=Number(val.substring(0,val.indexOf('×')));
+          operand2=Number(val.substring(val.indexOf('×')+1,val.length));
+          currentValue=operand1*operand2;
+          display.value=currentValue+'÷';
+        }else if(val.includes('÷')){
+          operand1=Number(val.substring(0,val.indexOf('÷')));
+          operand2=Number(val.substring(val.indexOf('÷')+1,val.length));
+          currentValue=operand1/operand2;
+          display.value=currentValue+'÷';
+        }else{
+          display.value=currentValue+'÷';
+        }
+      }
+      function multiplication(val){
+        let operand1='';
+        let operand2='';
+        //Percentage Functionality
+        // A + B % =, the result should be A × (1 + B/100) or A + (A × B/100) after you distribute the multiplication over the addition. Similarly, when the user enters A − B % =, the result should be A × (1 − B/100) or A − (A × B/100).
+        if(val.includes('%')){
+          var op=val.substring(0,val.indexOf('%'));
+          var A,B;
+          if(op.includes('+')){
+            A=Number(val.substring(0,op.indexOf('+')));
+            B=Number(val.substring(op.indexOf('+')+1,op.length));
+            currentValue=A + (A * B/100);
+            display.value=currentValue+'×';
+          }else if(op.includes('-')){
+            A=Number(val.substring(0,op.indexOf('-')));
+            B=Number(val.substring(op.indexOf('-')+1,op.length));
+            currentValue=A - (A * B/100);
+            display.value=currentValue+'×';
+          }
+        }
+        else if(val.includes('+')){
+          operand1=Number(val.substring(0,val.indexOf('+')));
+          operand2=Number(val.substring(val.indexOf('+')+1,val.length));
+          currentValue=operand1+operand2;
+          display.value=currentValue+'×';
+        }else if(val.includes('-')){
+          operand1=Number(val.substring(0,val.indexOf('-')));
+          operand2=Number(val.substring(val.indexOf('-')+1,val.length));
+          currentValue=operand1-operand2;
+          display.value=currentValue+'×';
+        }else if(val.includes('×')){
+          operand1=Number(val.substring(0,val.indexOf('×')));
+          operand2=Number(val.substring(val.indexOf('×')+1,val.length));
+          currentValue=operand1*operand2;
+          display.value=currentValue+'×';
+        }else if(val.includes('÷')){
+          operand1=Number(val.substring(0,val.indexOf('÷')));
+          operand2=Number(val.substring(val.indexOf('÷')+1,val.length));
+          currentValue=operand1/operand2;
+          display.value=currentValue+'×';
+        }else{
+          display.value=currentValue+'×';
+        }
+      }
+      function addition(val){
+        let operand1='';
+        let operand2='';
+        //Percentage Functionality
+        // A + B % =, the result should be A × (1 + B/100) or A + (A × B/100) after you distribute the multiplication over the addition. Similarly, when the user enters A − B % =, the result should be A × (1 − B/100) or A − (A × B/100).
+        if(val.includes('%')){
+          var op=val.substring(0,val.indexOf('%'));
+          var A,B;
+          if(op.includes('+')){
+            A=Number(val.substring(0,op.indexOf('+')));
+            B=Number(val.substring(op.indexOf('+')+1,op.length));
+            currentValue=A + (A * B/100);
+            display.value=currentValue+'+';
+          }else if(op.includes('-')){
+            A=Number(val.substring(0,op.indexOf('-')));
+            B=Number(val.substring(op.indexOf('-')+1,op.length));
+            currentValue=A - (A * B/100);
+            display.value=currentValue+'+';
+          } 
+        }
+        else if(val.includes('+')){
+          operand1=Number(val.substring(0,val.indexOf('+')));
+          operand2=Number(val.substring(val.indexOf('+')+1,val.length));
+          currentValue=operand1+operand2;
+          display.value=currentValue+'+';
+        }else if(val.includes('-')){
+          operand1=Number(val.substring(0,val.indexOf('-')));
+          operand2=Number(val.substring(val.indexOf('-')+1,val.length));
+          currentValue=operand1-operand2;
+          display.value=currentValue+'+';
+        }else if(val.includes('×')){
+          operand1=Number(val.substring(0,val.indexOf('×')));
+          operand2=Number(val.substring(val.indexOf('×')+1,val.length));
+          currentValue=operand1*operand2;
+          display.value=currentValue+'+';
+        }else if(val.includes('÷')){
+          operand1=Number(val.substring(0,val.indexOf('÷')));
+          operand2=Number(val.substring(val.indexOf('÷')+1,val.length));
+          currentValue=operand1/operand2;
+          display.value=currentValue+'+';
+        }else{
+          display.value=currentValue+'+';
+        }
+      }
+      function mod(val){
+        let operand1='';
+        let operand2='';
+        //Percentage Functionality
+        // A + B % =, the result should be A × (1 + B/100) or A + (A × B/100) after you distribute the multiplication over the addition. Similarly, when the user enters A − B % =, the result should be A × (1 − B/100) or A − (A × B/100).
+        if(val.includes('%')){
+          var op=val.substring(0,val.indexOf('%'));
+          var A,B;
+          if(op.includes('+')){
+            A=Number(val.substring(0,op.indexOf('+')));
+            B=Number(val.substring(op.indexOf('+')+1,op.length));
+            currentValue=A + (A * B/100);
+            display.value=currentValue+'%';
+          }else if(op.includes('-')){
+            A=Number(val.substring(0,op.indexOf('-')));
+            B=Number(val.substring(op.indexOf('-')+1,op.length));
+            currentValue=A - (A * B/100);
+            display.value=currentValue+'%';
+          }
+        }
+        else if(val.includes('+')){
+          operand1=Number(val.substring(0,val.indexOf('+')));
+          operand2=Number(val.substring(val.indexOf('+')+1,val.length));
+          currentValue=operand1+operand2;
+          display.value=currentValue+'%';
+        }else if(val.includes('-')){
+          operand1=Number(val.substring(0,val.indexOf('-')));
+          operand2=Number(val.substring(val.indexOf('-')+1,val.length));
+          currentValue=operand1-operand2;
+          display.value=currentValue+'%';
+        }else if(val.includes('×')){
+          operand1=Number(val.substring(0,val.indexOf('×')));
+          operand2=Number(val.substring(val.indexOf('×')+1,val.length));
+          currentValue=operand1*operand2;
+          display.value=currentValue+'%';
+        }else if(val.includes('÷')){
+          operand1=Number(val.substring(0,val.indexOf('÷')));
+          operand2=Number(val.substring(val.indexOf('÷')+1,val.length));
+          currentValue=operand1/operand2;
+          display.value=currentValue+'%';
+        }else{
+          display.value=currentValue+'%';
+        }
+      }
       function ceFunctionality(val) {
         let operators = ["+", "-", "×", "÷"];
         let str = "";
@@ -128,7 +347,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (str != "") {
           display.value = str;
-        } else {
+        }
+        else {
           currentValue = "";
           display.value = currentValue;
         }
