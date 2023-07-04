@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (value == "C") {
         currentValue = "";
         display.value = currentValue;
-      } else if (value == "1/x") {
+      } else if (value == "1/x"){
         oneByX(display.value);
       } else if (value == "x2") {
         xSquare(display.value);
@@ -17,18 +17,27 @@ document.addEventListener("DOMContentLoaded", function () {
         squareRootX(display.value);
       } else if (value == "⌫") {
         backSpace(display.value);
-      }
-      
-      else if(value=='+/-'){
-          negate(display.value);
-      }
-      else if (value == "=") {
+      }else if (value == "=") {
         equal(display.value);
-      } 
-      else if (value == "CE") {
+      }else if(value=='-'){
+        subtraction(display.value);
+      }else if(value=='×'){
+        multiplication(display.value);
+      }else if(value=='÷'){
+        division(display.value);
+      }else if(value=='+'){
+        addition(display.value);
+      }else if(value=='%'){
+        mod(display.value);
+      }else if(value=='1'||value=='2'||value=='3'||value=='4'||value=='5'||value=='6'||value=='7'||value=='8'||value=='9'){
+        currentValue=display.value+value;
+        display.value=currentValue;
+      }else if (value == "CE"){
         ceFunctionality(display.value);
       } 
-    
+      // else if(value=='+/-'){
+      //     negate(display.value);
+      // }
       else {
         currentValue = currentValue + value;
         display.value = currentValue;
@@ -50,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
         currentValue= result.toString();
         display.value=currentValue;
       }
-
       function backSpace(val) {
         if (display.value.length > 1) {
           display.value = display.value.substring(0, display.value.length - 1);
@@ -110,22 +118,21 @@ document.addEventListener("DOMContentLoaded", function () {
           display.value = currentValue;
         }
       }
-        function ceFunctionality(val) {
-          let operators = ["+", "-", "×", "÷"];
-          let str = "";
-          for (let i of operators) {
-            if (val.includes(i)) {
-              str = val.substring(0, val.indexOf(i) + 1);
-            }
-          }
-          if (str != "") {
-            display.value = str;
-          }
-          else {
-            currentValue = "";
-            display.value = currentValue;
+      function ceFunctionality(val) {
+        let operators = ["+", "-", "×", "÷"];
+        let str = "";
+        for (let i of operators) {
+          if (val.includes(i)) {
+            str = val.substring(0, val.indexOf(i) + 1);
           }
         }
-      });
+        if (str != "") {
+          display.value = str;
+        } else {
+          currentValue = "";
+          display.value = currentValue;
+        }
+      }
+    });
   }
 });
