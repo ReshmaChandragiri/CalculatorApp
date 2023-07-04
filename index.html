@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="calculator.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CALCULATOR</title>
@@ -14,9 +15,9 @@
             <div class="card-group">
                 <div class="card">
                     <div class="card-body">
-                        <h5><i class="bi bi-list"></i><span style="margin-left:10px;">Standard</span><i class="bi bi-box-arrow-in-up-right" style="margin-left:20px;"></i></h5> <!-- Bootstrap Font Icon CSS <i class="bi bi-box-arrow-down-left"></i> -->
+                        <h5><i class="bi bi-list"></i><span>Standard</span><i id="min" class="bi bi-box-arrow-in-up-right"></i></h5><br> <!-- Bootstrap Font Icon CSS <i class="bi bi-box-arrow-down-left"></i> -->
                         <input id="cal-display" readonly class="form-control form-control-lg text-end" type="text" 
-                            aria-label=".form-control-lg example" style="height: 131px;">
+                            aria-label=".form-control-lg example">
                             <div class="row gx-1">
                                 <div class="col">
                                     <button type="button" class="btn btn-light mt-2 w-100 btn-lg">MC</button>
@@ -69,7 +70,7 @@
                                     <button type="button" class="btn btn-light w-100 mt-2 border btn-lg">9</button>
                                 </div>
                                 <div class="col-3">
-                                    <button type="button" class="btn btn-light w-100 mt-2 border btn-lg">x</button>
+                                    <button type="button" class="btn btn-light w-100 mt-2 border btn-lg">×</button>
                                 </div>
                                 <div class="col-3">
                                     <button type="button" class="btn btn-light w-100 mt-2 border btn-lg">4</button>
@@ -111,9 +112,9 @@
                         
                     </div>
                 </div>
-                <div class="card" style="max-width: 350px;" >
+                <div class="card" id="Hm">
                     <div class="card-body">
-                        <p>History<span style="margin-left:20px;">Memory</span></p>
+                        <p>History<span>Memory</span></p>
                     </div>
                 </div>
            </div> 
