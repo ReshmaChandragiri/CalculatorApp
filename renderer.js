@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else if (value == "2√x") {
         squareRootX(display.value);
       } else if (value == "⌫") {
-        backSpace(display.value);
+        backSpace();
       }else if (value == "=") {
         equal(display.value);
       }else if(value=='-'){
@@ -300,7 +300,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         }
       }
-      function backSpace(val) {
+      function backSpace() {
         if (display.value.length > 1) {
           display.value = display.value.substring(0, display.value.length - 1);
           currentValue = display.value;
@@ -309,10 +309,11 @@ document.addEventListener("DOMContentLoaded", function () {
           display.value = 0;
         }
       }
-      // function negate(val){
-      //     let result=-Math.abs(val);
-      //     display.value=result;
-      // }
+      function negate(val){
+          let result=-val;
+          currentValue=result;
+          display.value=currentValue;
+      }
 
       function equal(val) {
         let operand1 = "";
@@ -654,7 +655,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (str != "") {
           display.value = str;
-        } else {
+        }
+        else {
           currentValue = "";
           display.value = currentValue;
         }
