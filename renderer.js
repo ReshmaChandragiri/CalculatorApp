@@ -90,7 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         //Percentage Functionality
         // A + B % =, the result should be A × (1 + B/100) or A + (A × B/100) after you distribute the multiplication over the addition. Similarly, when the user enters A − B % =, the result should be A × (1 − B/100) or A − (A × B/100).
-        //var op=val.substring(0,val.indexOf('%'));
         var A, B;
         if (val.includes("+")) {
           A = val.substring(0, val.indexOf("+"));
@@ -162,9 +161,6 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           f = false;
         }
-        //Percentage Functionality
-        // A + B % =, the result should be A × (1 + B/100) or A + (A × B/100) after you distribute the multiplication over the addition. Similarly, when the user enters A − B % =, the result should be A × (1 − B/100) or A − (A × B/100).
-        //var op=val.substring(0,val.indexOf('%'));
         var A, B;
         if (val.includes("+")) {
           A = val.substring(0, val.indexOf("+"));
@@ -231,9 +227,6 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           f = false;
         }
-        //Percentage Functionality
-        // A + B % =, the result should be A × (1 + B/100) or A + (A × B/100) after you distribute the multiplication over the addition. Similarly, when the user enters A − B % =, the result should be A × (1 − B/100) or A − (A × B/100).
-        //var op=val.substring(0,val.indexOf('%'));
         var A, B;
         if (val.includes("+")) {
           A = val.substring(0, val.indexOf("+"));
@@ -573,9 +566,6 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           f = false;
         }
-        //Percentage Functionality
-        // A + B % =, the result should be A × (1 + B/100) or A + (A × B/100) after you distribute the multiplication over the addition. Similarly, when the user enters A − B % =, the result should be A × (1 − B/100) or A − (A × B/100).
-        //var op=val.substring(0,val.indexOf('%'));
         var A, B;
         if (val.includes("+")) {
           A = val.substring(0, val.indexOf("+"));
