@@ -1,18 +1,35 @@
-h5 span{
-    margin-left:10px;
+html,
+body {
+  overflow: hidden;
 }
-
-h5 #min{
-    margin-left:20px;
+h5 span {
+  margin-left: 10px;
 }
-
-#cal-display{
-    height: 136px;
+h5 #min {
+  margin-left: 20px;
 }
-
-#Hm{
-    max-width: 350px;
+#cal-display {
+  height: 135px;
+  font-weight: bold;
+  font-size: xx-large;
 }
-p span{
-    margin-left:20px;
+#Hm {
+  max-width: 350px;
+}
+.header {
+  height: 34px;
+}
+#scrolling {
+  height: 535px;
+  overflow-y: scroll;
+}
+#scrolling::-webkit-scrollbar {
+  /* display: none; */
+  width: 0 !important;
+}
+.footer {
+  height: 38px;
+}
+p span {
+  margin-left: 20px;
 }
