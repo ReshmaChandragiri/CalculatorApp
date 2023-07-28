@@ -23,6 +23,12 @@ h5 #min {
   height: 535px;
   overflow-y: scroll;
 }
+#history{
+  display: none;
+}
+/* #Memory{
+  display: none;
+} */
 #scrolling::-webkit-scrollbar {
   /* display: none; */
   width: 0 !important;
