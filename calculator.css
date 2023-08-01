@@ -16,16 +16,40 @@ h5 #min {
 #Hm {
   max-width: 350px;
 }
+#Hm .tab{
+  overflow: hidden;
+}
+#Hm .tab .tablinks{
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+#Hm .tab .tablinks:hover {
+  border-bottom: 2px solid #3d77e3
+}
+/* #Hm .tab .tablinks.active {
+  border-bottom: 3px solid rgb(103, 171, 243);
+} */
 .header {
   height: 34px;
 }
 #scrolling {
-  height: 535px;
+  height: 532px;
   overflow-y: scroll;
 }
 #scrolling::-webkit-scrollbar {
   /* display: none; */
-  width: 0 !important;
+  width: 5 !important;
+}
+#scrolling .tabcontent{
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
 }
 .footer {
   height: 38px;

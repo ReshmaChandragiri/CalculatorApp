@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   var display = document.getElementById("cal-display");
+  var displayHistory = document.getElementById("History");
   var buttons = document.getElementsByClassName("btn");
   let currentValue = "";
+  let history=[];
+  let h1="";
 
   for (let button of buttons) {
     button.addEventListener("click", function () {
@@ -319,32 +322,48 @@ document.addEventListener("DOMContentLoaded", function () {
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("+") + 1, val.length));
-          currentValue = operand2 + operand1;
+          operand2 = val.substring(val.indexOf("+") + 1, val.length);
+          h1=operand1+"+"+operand2;
+          currentValue = operand1 + Number(operand2);
+          h1=h1+"="+currentValue;
+          history.push(h1);
+          displayHistory = history;
           display.value = currentValue;
         } else if (val.includes("-")) {
           operand1 = Number(val.substring(0, val.indexOf("-")));
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("-") + 1, val.length));
-          currentValue = operand1 - operand2;
+          operand2 = val.substring(val.indexOf("-") + 1, val.length);
+          h1=operand1+"-"+operand2;
+          currentValue = operand1 - Number(operand2);
+          h1=h1+"="+currentValue;
+          history.push(h1);
+          displayHistory = history;
           display.value = currentValue;
         } else if (val.includes("×")) {
           operand1 = Number(val.substring(0, val.indexOf("×")));
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("×") + 1, val.length));
-          currentValue = operand1 * operand2;
+          operand2 = val.substring(val.indexOf("×") + 1, val.length);
+          h1=operand1+"×"+operand2;
+          currentValue = operand1 * Number(operand2);
+          h1=h1+"="+currentValue;
+          history.push(h1);
+          displayHistory = history;
           display.value = currentValue;
         } else if (val.includes("÷")) {
           operand1 = Number(val.substring(0, val.indexOf("÷")));
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("÷") + 1, val.length));
-          currentValue = operand1 / operand2;
+          operand2 = val.substring(val.indexOf("÷") + 1, val.length);
+          h1=operand1+"÷"+operand2;
+          currentValue = operand1 / Number(operand2);
+          h1=h1+"="+currentValue;
+          history.push(h1);
+          displayHistory = history;
           display.value = currentValue;
         } else {
           display.value = currentValue;
@@ -642,3 +661,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+  // displayHistory=history;
+  // document.getElementById("History").innerHTML=history;
+}
