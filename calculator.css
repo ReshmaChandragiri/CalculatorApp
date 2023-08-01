@@ -25,10 +25,13 @@ h5 #min {
 }
 #history{
   display: none;
+  font-weight: bold;
+  font-size: large;
 }
-/* #Memory{
-  display: none;
-} */
+#Memory{
+  font-weight: bold;
+  font-size: large;
+}
 #scrolling::-webkit-scrollbar {
   /* display: none; */
   width: 0 !important;
