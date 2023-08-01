@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var displayHistory = document.getElementById("History");
   var buttons = document.getElementsByClassName("btn");
   let currentValue = "";
-  let history=[];
-  let h1="";
+  var h1="";
+  //var deleteButton = document.getElementsByClassName("btns");
 
   for (let button of buttons) {
     button.addEventListener("click", function () {
@@ -57,10 +57,27 @@ document.addEventListener("DOMContentLoaded", function () {
         dot(display.value);
       } else if (value == "+/-") {
         negate(display.value);
-      } else {
+      } else if(value == "MS"){
+        document.getElementById("Memory").innerHTML=display.value;
+      }else if(value == "M+"){
+        let t=document.getElementById("Memory").innerHTML;
+        document.getElementById("Memory").innerHTML=Number(t)+Number(display.value);
+      }else if(value == "M-"){
+        let t=document.getElementById("Memory").innerHTML;
+        document.getElementById("Memory").innerHTML=Number(t)-Number(display.value);
+      }else if(value == "MC"){
+        document.getElementById("Memory").innerHTML="";
+      }else if(value == "MR"){
+        display.value=document.getElementById("Memory").innerHTML;
+        currentValue=display.value;
+      }else if(value == "D"){
+        document.getElementById("history").innerHTML="";
+      }else {
         currentValue = currentValue + value;
         display.value = currentValue;
       }
+
+
 
       //Functions
       function dot(val) {
@@ -326,8 +343,7 @@ document.addEventListener("DOMContentLoaded", function () {
           h1=operand1+"+"+operand2;
           currentValue = operand1 + Number(operand2);
           h1=h1+"="+currentValue;
-          history.push(h1);
-          displayHistory = history;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue;
         } else if (val.includes("-")) {
           operand1 = Number(val.substring(0, val.indexOf("-")));
@@ -338,8 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
           h1=operand1+"-"+operand2;
           currentValue = operand1 - Number(operand2);
           h1=h1+"="+currentValue;
-          history.push(h1);
-          displayHistory = history;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue;
         } else if (val.includes("×")) {
           operand1 = Number(val.substring(0, val.indexOf("×")));
@@ -350,8 +365,7 @@ document.addEventListener("DOMContentLoaded", function () {
           h1=operand1+"×"+operand2;
           currentValue = operand1 * Number(operand2);
           h1=h1+"="+currentValue;
-          history.push(h1);
-          displayHistory = history;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue;
         } else if (val.includes("÷")) {
           operand1 = Number(val.substring(0, val.indexOf("÷")));
@@ -362,8 +376,7 @@ document.addEventListener("DOMContentLoaded", function () {
           h1=operand1+"÷"+operand2;
           currentValue = operand1 / Number(operand2);
           h1=h1+"="+currentValue;
-          history.push(h1);
-          displayHistory = history;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue;
         } else {
           display.value = currentValue;
@@ -384,38 +397,50 @@ document.addEventListener("DOMContentLoaded", function () {
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("+") + 1, val.length));
-          currentValue = operand1 + operand2;
+          operand2 = val.substring(val.indexOf("+") + 1, val.length);
+          h1=operand1+"+"+operand2;
+          currentValue = operand1 + Number(operand2);
+          h1=h1+"="+currentValue;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue + "-";
         } else if (val.includes("-")) {
           operand1 = Number(val.substring(0, val.indexOf("-")));
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("-") + 1, val.length));
-          currentValue = operand1 - operand2;
+          operand2 = val.substring(val.indexOf("-") + 1, val.length);
+          h1=operand1+"-"+operand2;
+          currentValue = operand1 - Number(operand2);
+          h1=h1+"="+currentValue;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue + "-";
         } else if (val.includes("×")) {
           operand1 = Number(val.substring(0, val.indexOf("×")));
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("×") + 1, val.length));
+          operand2 = val.substring(val.indexOf("×") + 1, val.length);
           if (val.substring(val.indexOf("×") + 1, val.length) == "") {
             operand2 = 1;
           }
-          currentValue = operand1 * operand2;
+          h1=operand1+"×"+operand2;
+          currentValue = operand1 * Number(operand2);
+          h1=h1+"="+currentValue;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue + "-";
         } else if (val.includes("÷")) {
           operand1 = Number(val.substring(0, val.indexOf("÷")));
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("÷") + 1, val.length));
+          operand2 = val.substring(val.indexOf("÷") + 1, val.length);
           if (val.substring(val.indexOf("÷") + 1, val.length) == "") {
             operand2 = 1;
           }
-          currentValue = operand1 / operand2;
+          h1=operand1+"÷"+operand2;
+          currentValue = operand1 / Number(operand2);
+          h1=h1+"="+currentValue;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue + "-";
         } else {
           display.value = currentValue + "-";
@@ -436,38 +461,50 @@ document.addEventListener("DOMContentLoaded", function () {
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("+") + 1, val.length));
-          currentValue = operand1 + operand2;
+          operand2 = val.substring(val.indexOf("+") + 1, val.length);
+          h1=operand1+"+"+operand2;
+          currentValue = operand1 + Number(operand2);
+          h1=h1+"="+currentValue;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue + "÷";
         } else if (val.includes("-")) {
           operand1 = Number(val.substring(0, val.indexOf("-")));
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("-") + 1, val.length));
-          currentValue = operand1 - operand2;
+          operand2 = val.substring(val.indexOf("-") + 1, val.length);
+          h1=operand1+"-"+operand2;
+          currentValue = operand1 - Number(operand2);
+          h1=h1+"="+currentValue;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue + "÷";
         } else if (val.includes("×")) {
           operand1 = Number(val.substring(0, val.indexOf("×")));
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("×") + 1, val.length));
+          operand2 = val.substring(val.indexOf("×") + 1, val.length);
           if (val.substring(val.indexOf("×") + 1, val.length) == "") {
             operand2 = 1;
           }
-          currentValue = operand1 * operand2;
+          h1=operand1+"×"+operand2;
+          currentValue = operand1 * Number(operand2);
+          h1=h1+"="+currentValue;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue + "÷";
         } else if (val.includes("÷")) {
           operand1 = Number(val.substring(0, val.indexOf("÷")));
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("÷") + 1, val.length));
+          operand2 = val.substring(val.indexOf("÷") + 1, val.length);
           if (val.substring(val.indexOf("÷") + 1, val.length) == "") {
             operand2 = 1;
           }
-          currentValue = operand1 / operand2;
+          h1=operand1+"÷"+operand2;
+          currentValue = operand1 / Number(operand2);
+          h1=h1+"="+currentValue;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue + "÷";
         } else {
           display.value = currentValue + "÷";
@@ -488,38 +525,50 @@ document.addEventListener("DOMContentLoaded", function () {
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("+") + 1, val.length));
-          currentValue = operand1 + operand2;
+          operand2 = val.substring(val.indexOf("+") + 1, val.length);
+          h1=operand1+"+"+operand2;
+          currentValue = operand1 + Number(operand2);
+          h1=h1+"="+currentValue;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue + "×";
         } else if (val.includes("-")) {
           operand1 = Number(val.substring(0, val.indexOf("-")));
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("-") + 1, val.length));
-          currentValue = operand1 - operand2;
+          operand2 = val.substring(val.indexOf("-") + 1, val.length);
+          h1=operand1+"-"+operand2;
+          currentValue = operand1 - Number(operand2);
+          h1=h1+"="+currentValue;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue + "×";
         } else if (val.includes("×")) {
           operand1 = Number(val.substring(0, val.indexOf("×")));
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("×") + 1, val.length));
+          operand2 = val.substring(val.indexOf("×") + 1, val.length);
           if (val.substring(val.indexOf("×") + 1, val.length) == "") {
             operand2 = 1;
           }
-          currentValue = operand1 * operand2;
+          h1=operand1+"×"+operand2;
+          currentValue = operand1 * Number(operand2);
+          h1=h1+"="+currentValue;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue + "×";
         } else if (val.includes("÷")) {
           operand1 = Number(val.substring(0, val.indexOf("÷")));
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("÷") + 1, val.length));
+          operand2 = val.substring(val.indexOf("÷") + 1, val.length);
           if (val.substring(val.indexOf("÷") + 1, val.length) == "") {
             operand2 = 1;
           }
-          currentValue = operand1 / operand2;
+          h1=operand1+"÷"+operand2;
+          currentValue = operand1 / Number(operand2);
+          h1=h1+"="+currentValue;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue + "×";
         } else {
           display.value = currentValue + "×";
@@ -540,38 +589,50 @@ document.addEventListener("DOMContentLoaded", function () {
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("+") + 1, val.length));
-          currentValue = operand1 + operand2;
+          operand2 = val.substring(val.indexOf("+") + 1, val.length);
+          h1=operand1+"+"+operand2;
+          currentValue = operand1 + Number(operand2);
+          h1=h1+"="+currentValue;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue + "+";
         } else if (val.includes("-")) {
           operand1 = Number(val.substring(0, val.indexOf("-")));
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("-") + 1, val.length));
-          currentValue = operand1 - operand2;
+          operand2 = val.substring(val.indexOf("-") + 1, val.length);
+          h1=operand1+"-"+operand2;
+          currentValue = operand1 - Number(operand2);
+          h1=h1+"="+currentValue;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue + "+";
         } else if (val.includes("×")) {
           operand1 = Number(val.substring(0, val.indexOf("×")));
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("×") + 1, val.length));
+          operand2 = val.substring(val.indexOf("×") + 1, val.length);
           if (val.substring(val.indexOf("×") + 1, val.length) == "") {
             operand2 = 1;
           }
-          currentValue = operand1 * operand2;
+          h1=operand1+"×"+operand2;
+          currentValue = operand1 * Number(operand2);
+          h1=h1+"="+currentValue;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue + "+";
         } else if (val.includes("÷")) {
           operand1 = Number(val.substring(0, val.indexOf("÷")));
           if (f) {
             operand1 = operand1 * -1;
           }
-          operand2 = Number(val.substring(val.indexOf("÷") + 1, val.length));
+          operand2 = val.substring(val.indexOf("÷") + 1, val.length);
           if (val.substring(val.indexOf("÷") + 1, val.length) == "") {
             operand2 = 1;
           }
-          currentValue = operand1 / operand2;
+          h1=operand1+"÷"+operand2;
+          currentValue = operand1 / Number(operand2);
+          h1=h1+"="+currentValue;
+          document.getElementById('history').innerHTML+=h1+"</br>";
           display.value = currentValue + "+";
         } else {
           display.value = currentValue + "+";
@@ -661,19 +722,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+function switchHm() {
+  var history = document.getElementById("history");
+  var Memory = document.getElementById("Memory");
 
-function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
+  if (history.style.display == "none") {
+    history.style.display = "block";
+    Memory.style.display = "none";
+  } else {
+    history.style.display = "none";
+    Memory.style.display = "block";
   }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-  // displayHistory=history;
-  // document.getElementById("History").innerHTML=history;
 }
